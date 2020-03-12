@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>Javascript与远端的交互 | Hexo</title>
+    <meta name="author" content="John Doe" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="一、python与javascript之间的数据传输方式。js向python传输数据12345678910111213141516// js传输文件 // 这里的config_file的dom元素时type=file的input元素。// 先用input选择某个文件，然后再用ajax传送到python。var form = new FormData();form.append(&#34;config_file&#34;, document.getElementById(&#34;config_file&#34;).fil..." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/javascript">
+                <span class="nav-text">JS</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、python与javascript之间的数据传输方式。"><span class="toc-number">1.</span> <span class="toc-text">一、python与javascript之间的数据传输方式。</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js向python传输数据"><span class="toc-number">1.1.</span> <span class="toc-text">js向python传输数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js向python传输js字典"><span class="toc-number">1.2.</span> <span class="toc-text">js向python传输js字典</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Javascript与远端的交互
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2017/09/23/2017-09-23-Javascript-Remote-Interaction/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2017-09-22T16:00:00.000Z" itemprop="datePublished">2017-09-23</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/python-javascript/" rel="tag">python javascript</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h2 id="一、python与javascript之间的数据传输方式。"><a href="#一、python与javascript之间的数据传输方式。" class="headerlink" title="一、python与javascript之间的数据传输方式。"></a>一、python与javascript之间的数据传输方式。</h2><h3 id="js向python传输数据"><a href="#js向python传输数据" class="headerlink" title="js向python传输数据"></a>js向python传输数据</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js传输文件 </span></span><br><span class="line"><span class="comment">// 这里的config_file的dom元素时type=file的input元素。</span></span><br><span class="line"><span class="comment">// 先用input选择某个文件，然后再用ajax传送到python。</span></span><br><span class="line"><span class="keyword">var</span> form = <span class="keyword">new</span> FormData();</span><br><span class="line">form.append(<span class="string">"config_file"</span>, <span class="built_in">document</span>.getElementById(<span class="string">"config_file"</span>).files[<span class="number">0</span>]);</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">"/Display/UploadConfig"</span>,</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    data: form,</span><br><span class="line">    processData: <span class="literal">false</span>,</span><br><span class="line">    contentType: <span class="literal">false</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python接收</span></span><br><span class="line"><span class="comment"># 先save到本地，再进行后续处理</span></span><br><span class="line">request.files.get(<span class="string">"config_file"</span>).save(<span class="string">"temp.config"</span>)</span><br><span class="line">config = <span class="literal">None</span></span><br><span class="line"><span class="keyword">with</span> open(<span class="string">"temp.config"</span>, <span class="string">'r'</span>) <span class="keyword">as</span> fin:</span><br><span class="line">    config = fjson.loads(fin.read())</span><br></pre></td></tr></table></figure>
+
+<h3 id="js向python传输js字典"><a href="#js向python传输js字典" class="headerlink" title="js向python传输js字典"></a>js向python传输js字典</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// js传输: newConfig是js的一个字典</span></span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    url: <span class="string">"/Display/ReloadModelData"</span>,</span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    data:&#123;</span><br><span class="line">        config: <span class="built_in">JSON</span>.stringify(newConfig)</span><br><span class="line">    &#125;,</span><br><span class="line">    dataType: <span class="string">"json"</span>,</span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(data);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># python接收</span></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> json <span class="keyword">as</span> fjson</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line">config = fjson.loads(request.form.get(<span class="string">'config'</span>))</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2017/08/25/2017-08-25-D3-V4-Update/" class="article-next" title="D3.js V4 update"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2018/01/24/2018-01-24-Github-Page-Setup/" class="article-prev" title="Github Page Setup"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

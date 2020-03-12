@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>Tricks of Tensorflow | Hexo</title>
+    <meta name="author" content="John Doe" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="calculate with feed-dict on part of network123456789# suppose that there two output tensor in network: t1 -&amp;gt; t2, it means that t2 use output of t1 as input and get its own output.# input tensor of network is x, input value is inpval_t1 = sess.r..." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/javascript">
+                <span class="nav-text">JS</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#calculate-with-feed-dict-on-part-of-network"><span class="toc-number">1.</span> <span class="toc-text">calculate with feed-dict on part of network</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tf-train-ExponentialMovingAverage"><span class="toc-number">2.</span> <span class="toc-text">tf.train.ExponentialMovingAverage</span></a></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Tricks of Tensorflow
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2018/11/27/2018-08-15-Tricks-of-Tensorflow/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-11-26T16:00:00.000Z" itemprop="datePublished">2018-11-27</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/tensorflow/" rel="tag">tensorflow</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="calculate-with-feed-dict-on-part-of-network"><a href="#calculate-with-feed-dict-on-part-of-network" class="headerlink" title="calculate with feed-dict on part of network"></a>calculate with feed-dict on part of network</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># suppose that there two output tensor in network: t1 -&gt; t2, it means that t2 use output of t1 as input and get its own output.</span></span><br><span class="line"><span class="comment"># input tensor of network is x, input value is inp</span></span><br><span class="line">val_t1 = sess.run(t1, feed_dict=&#123;x:inp&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate t2's output from input tensor</span></span><br><span class="line">val_t2 = sess.run(t2, feed_dict=&#123;x:inp&#125;)</span><br><span class="line"><span class="comment"># calculate t2's output from t1</span></span><br><span class="line">val_t2_new = sess.run(t2, feed_dict=&#123;t1:val_t1&#125;)</span><br><span class="line"><span class="comment"># np.all(val_t2 == val_t2_new) &lt;- True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="tf-train-ExponentialMovingAverage"><a href="#tf-train-ExponentialMovingAverage" class="headerlink" title="tf.train.ExponentialMovingAverage"></a>tf.train.ExponentialMovingAverage</h3><p>滑动平均模型，在保存模型时，存档里会包含多份参数，恢复时需要用相应的载入模型。<br>引用自: <a href="https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage" target="_blank" rel="noopener">https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">####### method for initialization</span></span><br><span class="line"><span class="comment"># Create variables.</span></span><br><span class="line">var0 = tf.Variable(...)</span><br><span class="line">var1 = tf.Variable(...)</span><br><span class="line"><span class="comment"># ... use the variables to build a training model...</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># Create an op that applies the optimizer.  This is what we usually</span></span><br><span class="line"><span class="comment"># would use as a training op.</span></span><br><span class="line">opt_op = opt.minimize(my_loss, [var0, var1])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an ExponentialMovingAverage object</span></span><br><span class="line">ema = tf.train.ExponentialMovingAverage(decay=<span class="number">0.9999</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.control_dependencies([opt_op]):</span><br><span class="line">    <span class="comment"># Create the shadow variables, and add ops to maintain moving averages</span></span><br><span class="line">    <span class="comment"># of var0 and var1. This also creates an op that will update the moving</span></span><br><span class="line">    <span class="comment"># averages after each training step.  This is what we will use in place</span></span><br><span class="line">    <span class="comment"># of the usual training op.</span></span><br><span class="line">    training_op = ema.apply([var0, var1])</span><br><span class="line"></span><br><span class="line">...train the model by running training_op...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">######## two methods to restore from saved model.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># first method</span></span><br><span class="line"><span class="comment"># Create a Saver that loads variables from their saved shadow values.</span></span><br><span class="line">shadow_var0_name = ema.average_name(var0)</span><br><span class="line">shadow_var1_name = ema.average_name(var1)</span><br><span class="line">saver = tf.train.Saver(&#123;shadow_var0_name: var0, shadow_var1_name: var1&#125;)</span><br><span class="line">saver.restore(...checkpoint filename...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># second method</span></span><br><span class="line">variables_to_restore = ema.variables_to_restore()</span><br><span class="line">saver = tf.train.Saver(variables_to_restore)</span><br><span class="line">saver.restore(...checkpoint filename...)</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2018/08/15/2018-08-21-typora_tips/" class="article-next" title="Typora Tips"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2019/03/19/2019-03-19-tricks-for-remote-server/" class="article-prev" title="tricks for working on remote server"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

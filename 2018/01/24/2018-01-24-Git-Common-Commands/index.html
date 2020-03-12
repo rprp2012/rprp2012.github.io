@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+
+    
+
+    
+
+    <title>Git Common Commands | Hexo</title>
+    <meta name="author" content="John Doe" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="设置上传限制：git config http.postBuffer 10240000取出某个版本的某文件:git checkout branch – filename维持HEAD的指向不变。用branch所指向的提交中filename替换暂存区和工作区中相应的文件。注意会将暂存区和工作区中的filename文件直接覆盖。设置commit的编辑器:git config core.editor vicheckout, reset, reverthttp://segmentfault.co..." />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+
+    
+    
+
+    <style type="text/css">
+    @font-face {
+        font-family: 'icomoon';
+        src: url("/fonts/icomoon.eot?q628ml");
+        src: url("/fonts/icomoon.eot?q628ml#iefix") format('embedded-opentype'),
+             url("/fonts/icomoon.ttf?q628ml") format('truetype'),
+             url("/fonts/icomoon.woff?q628ml") format('woff'),
+             url("/fonts/icomoon.svg?q628ml#icomoon") format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    .nav-inner {top:0;}
+    .author-meta {position:static;top:0;}
+    .search-form {height:36px;}
+    </style>
+    <script type="text/javascript" src="https://unpkg.com/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+    <![endif]-->
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+
+    <main class="app">
+        <header id="header" class="header clearfix">
+    <div id="nav" class="nav">
+    <div class="nav-mobile">
+        <button id="open-panel" class="open-panel nav-mobile-item"><i class="icon-documents"></i></button>
+        <h1 class="nav-mobile-title nav-mobile-item">Hexo</h1>
+        <button id="open-menus" class="open-panel nav-mobile-item"><i class="icon-library"></i></button>
+    </div>
+
+    <nav id="nav-inner" class="nav-inner">
+        
+            <a class="nav-item" href="/">
+                <span class="nav-text">首页</span>
+            </a>
+        
+            <a class="nav-item" href="/categories/javascript">
+                <span class="nav-text">JS</span>
+            </a>
+        
+            <a class="nav-item" href="/tags">
+                <span class="nav-text">标签</span>
+            </a>
+        
+            <a class="nav-item" href="/archives">
+                <span class="nav-text">归档</span>
+            </a>
+        
+    </nav>
+</div>
+
+    <aside id="aside" class="aside">
+    <div id="aside-mask" class="aside-mask"></div>
+    <div id="aside-inner" class="aside-inner">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit"><i class="icon-search-stroke"></i></button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+
+        
+        
+        
+        
+
+        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#设置上传限制："><span class="toc-number">1.</span> <span class="toc-text">设置上传限制：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#取出某个版本的某文件"><span class="toc-number">2.</span> <span class="toc-text">取出某个版本的某文件:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置commit的编辑器"><span class="toc-number">3.</span> <span class="toc-text">设置commit的编辑器:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkout-reset-revert"><span class="toc-number">4.</span> <span class="toc-text">checkout, reset, revert</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pull"><span class="toc-number">5.</span> <span class="toc-text">pull</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#push"><span class="toc-number">6.</span> <span class="toc-text">push</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show"><span class="toc-number">7.</span> <span class="toc-text">show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Git忽略文件"><span class="toc-number">8.</span> <span class="toc-text">Git忽略文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#从未提交过的文件"><span class="toc-number">8.1.</span> <span class="toc-text">从未提交过的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除已经推送（push）过的文件"><span class="toc-number">8.2.</span> <span class="toc-text">删除已经推送（push）过的文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#忽略已经推送（push）过的文件"><span class="toc-number">8.3.</span> <span class="toc-text">忽略已经推送（push）过的文件</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+</header>
+
+        <div id="content" class="content">
+            <div id="wrapper" class="wrapper" style="max-width: 800px">
+                <article class="article" itemscope itemprop="blogPost">
+    
+    <header class="article-header">
+        
+        <h1 itemprop="name">
+            Git Common Commands
+        </h1>
+        
+        <div class="article-meta clearfix">
+            <a class="article-date" href="http://yoursite.com/2018/01/24/2018-01-24-Git-Common-Commands/index.html">
+    
+    <i class="icon-calendar"></i>
+    
+    <time datetime="2018-01-23T16:00:00.000Z" itemprop="datePublished">2018-01-24</time>
+</a>
+
+            
+<div class="article-tag-list">
+    <i class="icon-tag"></i>
+    <a class="article-tag-link" href="/tags/git-usage/" rel="tag">git usage</a>
+</div>
+
+
+        </div>
+    </header>
+    
+    <section class="article-body markdown-body">
+        
+        <h3 id="设置上传限制："><a href="#设置上传限制：" class="headerlink" title="设置上传限制："></a>设置上传限制：</h3><p>git config http.postBuffer 10240000</p>
+<h3 id="取出某个版本的某文件"><a href="#取出某个版本的某文件" class="headerlink" title="取出某个版本的某文件:"></a>取出某个版本的某文件:</h3><p>git checkout branch – filename<br>维持HEAD的指向不变。用branch所指向的提交中filename替换暂存区和工作区中相应的文件。注意会将暂存区和工作区中的filename文件直接覆盖。</p>
+<h3 id="设置commit的编辑器"><a href="#设置commit的编辑器" class="headerlink" title="设置commit的编辑器:"></a>设置commit的编辑器:</h3><p>git config core.editor vi</p>
+<h3 id="checkout-reset-revert"><a href="#checkout-reset-revert" class="headerlink" title="checkout, reset, revert"></a>checkout, reset, revert</h3><p><a href="http://segmentfault.com/a/1190000003102737" target="_blank" rel="noopener">http://segmentfault.com/a/1190000003102737</a></p>
+<h3 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h3><p><a href="http://www.cnblogs.com/hanxianlong/archive/2012/09/10/2678659.html" target="_blank" rel="noopener">http://www.cnblogs.com/hanxianlong/archive/2012/09/10/2678659.html</a></p>
+<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p><a href="http://www.open-open.com/lib/view/open1431680242669.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1431680242669.html</a></p>
+<h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><p>样例：git show 12e1231ad123  ./jni/aa.cpp<br>上面这条命令可以查看12e1231ad123这次commit中的./jni/aa.cpp的变化</p>
+<h3 id="Git忽略文件"><a href="#Git忽略文件" class="headerlink" title="Git忽略文件"></a>Git忽略文件</h3><h4 id="从未提交过的文件"><a href="#从未提交过的文件" class="headerlink" title="从未提交过的文件"></a>从未提交过的文件</h4><p>使用.gitignore。<br>该文件只能作用于未跟踪的文件（Untracked Files），也就是那些从来没有被 git 记录过的文件。</p>
+<h4 id="删除已经推送（push）过的文件"><a href="#删除已经推送（push）过的文件" class="headerlink" title="删除已经推送（push）过的文件"></a>删除已经推送（push）过的文件</h4><p>想从git远程库中删除，并在以后的提交中忽略，但是却还想在本地保留这个文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached Xml/config.xml</span><br></pre></td></tr></table></figure>
+
+<h4 id="忽略已经推送（push）过的文件"><a href="#忽略已经推送（push）过的文件" class="headerlink" title="忽略已经推送（push）过的文件"></a>忽略已经推送（push）过的文件</h4><p>已经推送（push）过的文件，想在以后的提交时忽略此文件，即使本地已经修改过，而且不删除git远程库中相应文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged Xml/config.xml</span><br></pre></td></tr></table></figure>
+<p>后面的 Xml/config.xml 是要忽略的文件的路径。如果要忽略一个目录，打开 git bash，cd到 目标目录下，执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged $(git ls-files | tr <span class="string">'\n'</span> <span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
+
+        
+    </section>
+</article>
+
+
+
+<a id="pagenext" href="/2018/01/24/2018-01-24-Github-Page-Setup/" class="article-next" title="Github Page Setup"><i class="icon-arrow-right"></i></a>
+
+
+<a id="pageprev" href="/2018/02/11/2018-02-11-d3-example/" class="article-prev" title="D3 example"><i class="icon-arrow-left"></i></a>
+
+
+
+
+            </div>
+        </div>
+        <footer class="footer">
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>, Theme by <a href="https://github.com/sanonz/hexo-theme-concise" target="_blank">Concise</a>
+
+    
+</footer>
+
+    </main>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(function() {
+        var nodes = {
+            nav: $('#nav'),
+            aside: $('#aside'),
+            asideInner: $('#aside-inner'),
+            navInner: $('#nav-inner')
+        };
+
+        var doing = false;
+        nodes.asideInner.on('webkitAnimationEnd mozAnimationEnd oAnimationEnd oanimationend animationend', function() {
+            if (nodes.aside.hasClass('mobile-open')) {
+                nodes.aside.removeClass('mobile-open');
+            } else {
+                nodes.aside.removeClass('mobile-close panel-show');
+            }
+            doing = false;
+        });
+        $('#open-panel, #aside-mask').on('click', function() {
+            if (doing) {
+                return;
+            }
+
+            if (nodes.aside.hasClass('panel-show')) {
+                nodes.aside.addClass('mobile-close');
+            } else {
+                nodes.aside.addClass('mobile-open panel-show');
+            }
+        });
+        $('#open-menus').on('click', function() {
+            nodes.navInner.slideToggle();
+        });
+
+        if (window.innerWidth <= 960) {
+            setTimeout(function() {
+                nodes.navInner.slideUp();
+            }, 3000);
+        }
+    });
+    </script>
+    
+        
+<script src="/js/scrollspy.min.js"></script>
+
+        <script type="text/javascript">
+        $(document.body).scrollspy({target: '#aside-inner'});
+
+        $(window).on('resize', function() {
+            var hw = $('#header').width();
+            var ww = $('#wrapper').width();
+            var space = ($(this).width() - hw - ww) / 2 / 2;
+
+            var pageprev = $('#pageprev');
+            var pagenext = $('#pagenext');
+            var avg = (pageprev.width() + pagenext.width()) / 2
+
+            if(space > avg) {
+                var len = space - avg / 2;
+                var styles = {position: 'fixed', top: '50%', marginTop: - (pageprev.width() + pagenext.width()) / 4}
+                pageprev.css($.extend({left: hw + len}, styles));
+                pagenext.css($.extend({right: len}, styles));
+            } else {
+                pageprev.removeAttr('style');
+                pagenext.removeAttr('style');
+            }
+        }).trigger('resize');
+        </script>
+    
+
+</body>
+</html>

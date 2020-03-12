@@ -7,7 +7,7 @@
 
     
 
-    <title>Hexo</title>
+    <title>Category: javascript | Hexo</title>
     <meta name="author" content="John Doe" />
     <meta name="keywords" content="" />
     <meta name="description" content="" />
@@ -55,11 +55,11 @@
 
     <nav id="nav-inner" class="nav-inner">
         
-            <a class="nav-item active" href="/">
+            <a class="nav-item" href="/">
                 <span class="nav-text">首页</span>
             </a>
         
-            <a class="nav-item" href="/categories/javascript">
+            <a class="nav-item active" href="/categories/javascript">
                 <span class="nav-text">JS</span>
             </a>
         
@@ -127,259 +127,11 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2019/03/19/2019-03-19-tricks-for-remote-server/">tricks for working on remote server</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2019-03-18T16:00:00.000Z" itemprop="datePublished">2019-03-19</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/remote-server/" rel="tag">remote server</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="edit-code-in-remote-linux-server"><a href="#edit-code-in-remote-linux-server" class="headerlink" title="edit code in remote linux server"></a>edit code in remote linux server</h3><p>method: <a href="https://blog.csdn.net/houszchina/article/details/79850644" target="_blank" rel="noopener">https://blog.csdn.net/houszchina/article/details/79850644</a></p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/11/27/2018-08-15-Tricks-of-Tensorflow/">Tricks of Tensorflow</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-11-26T16:00:00.000Z" itemprop="datePublished">2018-11-27</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/tensorflow/" rel="tag">tensorflow</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="calculate-with-feed-dict-on-part-of-network"><a href="#calculate-with-feed-dict-on-part-of-network" class="headerlink" title="calculate with feed-dict on part of network"></a>calculate with feed-dict on part of network</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># suppose that there two output tensor in network: t1 -&gt; t2, it means that t2 use output of t1 as input and get its own output.</span></span><br><span class="line"><span class="comment"># input tensor of network is x, input value is inp</span></span><br><span class="line">val_t1 = sess.run(t1, feed_dict=&#123;x:inp&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment"># calculate t2's output from input tensor</span></span><br><span class="line">val_t2 = sess.run(t2, feed_dict=&#123;x:inp&#125;)</span><br><span class="line"><span class="comment"># calculate t2's output from t1</span></span><br><span class="line">val_t2_new = sess.run(t2, feed_dict=&#123;t1:val_t1&#125;)</span><br><span class="line"><span class="comment"># np.all(val_t2 == val_t2_new) &lt;- True</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="tf-train-ExponentialMovingAverage"><a href="#tf-train-ExponentialMovingAverage" class="headerlink" title="tf.train.ExponentialMovingAverage"></a>tf.train.ExponentialMovingAverage</h3><p>滑动平均模型，在保存模型时，存档里会包含多份参数，恢复时需要用相应的载入模型。<br>引用自: <a href="https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage" target="_blank" rel="noopener">https://www.tensorflow.org/api_docs/python/tf/train/ExponentialMovingAverage</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">####### method for initialization</span></span><br><span class="line"><span class="comment"># Create variables.</span></span><br><span class="line">var0 = tf.Variable(...)</span><br><span class="line">var1 = tf.Variable(...)</span><br><span class="line"><span class="comment"># ... use the variables to build a training model...</span></span><br><span class="line">...</span><br><span class="line"><span class="comment"># Create an op that applies the optimizer.  This is what we usually</span></span><br><span class="line"><span class="comment"># would use as a training op.</span></span><br><span class="line">opt_op = opt.minimize(my_loss, [var0, var1])</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create an ExponentialMovingAverage object</span></span><br><span class="line">ema = tf.train.ExponentialMovingAverage(decay=<span class="number">0.9999</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.control_dependencies([opt_op]):</span><br><span class="line">    <span class="comment"># Create the shadow variables, and add ops to maintain moving averages</span></span><br><span class="line">    <span class="comment"># of var0 and var1. This also creates an op that will update the moving</span></span><br><span class="line">    <span class="comment"># averages after each training step.  This is what we will use in place</span></span><br><span class="line">    <span class="comment"># of the usual training op.</span></span><br><span class="line">    training_op = ema.apply([var0, var1])</span><br><span class="line"></span><br><span class="line">...train the model by running training_op...</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">######## two methods to restore from saved model.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># first method</span></span><br><span class="line"><span class="comment"># Create a Saver that loads variables from their saved shadow values.</span></span><br><span class="line">shadow_var0_name = ema.average_name(var0)</span><br><span class="line">shadow_var1_name = ema.average_name(var1)</span><br><span class="line">saver = tf.train.Saver(&#123;shadow_var0_name: var0, shadow_var1_name: var1&#125;)</span><br><span class="line">saver.restore(...checkpoint filename...)</span><br><span class="line"></span><br><span class="line"><span class="comment"># second method</span></span><br><span class="line">variables_to_restore = ema.variables_to_restore()</span><br><span class="line">saver = tf.train.Saver(variables_to_restore)</span><br><span class="line">saver.restore(...checkpoint filename...)</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/08/15/2018-08-21-typora_tips/">Typora Tips</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-08-14T16:00:00.000Z" itemprop="datePublished">2018-08-15</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/markdown-typora/" rel="tag">markdown typora</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="mathmetical-symbol"><a href="#mathmetical-symbol" class="headerlink" title="mathmetical symbol"></a>mathmetical symbol</h3><table>
-<thead>
-<tr>
-<th>运算符</th>
-<th>markdown</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>±</td>
-<td>\pm</td>
-</tr>
-<tr>
-<td>×</td>
-<td>\times</td>
-</tr>
-<tr>
-<td>÷</td>
-<td>\div</td>
-</tr>
-<tr>
-<td>∑</td>
-<td>\sum</td>
-</tr>
-<tr>
-<td>∏</td>
-<td>\prod</td>
-</tr>
-<tr>
-<td>≠</td>
-<td>\neq</td>
-</tr>
-<tr>
-<td>≤</td>
-<td>\leq</td>
-</tr>
-<tr>
-<td>≥</td>
-<td>\geq</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>省略号</th>
-<th>markdown</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>⋯</td>
-<td>\cdots</td>
-</tr>
-</tbody></table>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/07/03/2018-07-03-Python-WithCtypes/">Python With ctypes</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-07-02T16:00:00.000Z" itemprop="datePublished">2018-07-03</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/python-ctypes/" rel="tag">python ctypes</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>参考资料:<br><a href="https://blog.csdn.net/kjlrzzyffmx/article/details/50206163" target="_blank" rel="noopener">https://blog.csdn.net/kjlrzzyffmx/article/details/50206163</a></p>
-<h3 id="简单例子"><a href="#简单例子" class="headerlink" title="简单例子"></a>简单例子</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c++ program</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">namespace</span> Ckl &#123;</span><br><span class="line">    <span class="keyword">extern</span> <span class="string">"C"</span> <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">foo</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"function: foo().\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ctypes <span class="keyword">import</span> *</span><br><span class="line">dll = cdll.LoadLibrary(<span class="string">'ctest.dll'</span>)</span><br><span class="line">dll.foo()</span><br></pre></td></tr></table></figure>
-
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>c++的namespace可以忽略（似乎只在c++的编译过程中生效，生成的dll里并没有namespace信息?）</p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/02/24/2018-02-24-build-lisp-environment/">Build Lisp Environment</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-02-23T16:00:00.000Z" itemprop="datePublished">2018-02-24</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/lisp/" rel="tag">lisp</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="ubuntu下lisp开发环境配置-tmux-vim-slimv"><a href="#ubuntu下lisp开发环境配置-tmux-vim-slimv" class="headerlink" title="ubuntu下lisp开发环境配置(tmux+vim+slimv)"></a>ubuntu下lisp开发环境配置(tmux+vim+slimv)</h3><ol>
-<li>安装tmux.  </li>
-<li>下载解压slimv.  </li>
-<li>下载解压安装sbcl.  </li>
-<li>配置vim的vundle,设置vimrc用bundle来自动安装slimv(自动安装的slimv并不可用),将自动安装的slimv的文件替换成我们下载的slimv.  </li>
-<li>进入slimv/slime/下,用start-swank.lisp启动swank服务器.  </li>
-<li>使用: 用vim打开任意的lisp文件后,”,c”即可打开vim下的repl循环.  </li>
-</ol>
-<h3 id="lisp相关文档"><a href="#lisp相关文档" class="headerlink" title="lisp相关文档"></a>lisp相关文档</h3><ol>
-<li>网上心得:把lisp当python用,脚本语言.<br><a href="http://www.sbcl.org/manual/index.html#Internals-Documentation" target="_blank" rel="noopener">Sbcl文档</a><br><a href="http://acl.readthedocs.io/en/latest/zhCN/" target="_blank" rel="noopener">ANSI Common Lisp</a><br><a href="http://acl.readthedocs.io/en/latest/zhCN/" target="_blank" rel="noopener">slimv tutorial</a>  </li>
-<li>common lisp缺点:没有python那么多实用的库</li>
-<li>支持与C交互,可用C实现底层接口(UFFI)</li>
-</ol>
-<h3 id="其他tips"><a href="#其他tips" class="headerlink" title="其他tips"></a>其他tips</h3><ol>
-<li>Ubuntu下bash命令<br>查看所有服务的端口: <code>$netstat –ap</code><br>强制关闭进程: <code>$kill -9 pid号</code>  </li>
-</ol>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2018/02/11/2018-02-11-d3-example/">D3 example</a>
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
+            <a class="article-date" href="http://yoursite.com/categories/javascript/index.html">
     
     <i class="icon-calendar"></i>
     
@@ -410,100 +162,11 @@
     <header class="article-header">
         
         <h1 itemprop="name">
-            <a href="/2018/01/24/2018-01-24-Git-Common-Commands/">Git Common Commands</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-23T16:00:00.000Z" itemprop="datePublished">2018-01-24</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/git-usage/" rel="tag">git usage</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <h3 id="设置上传限制："><a href="#设置上传限制：" class="headerlink" title="设置上传限制："></a>设置上传限制：</h3><p>git config http.postBuffer 10240000</p>
-<h3 id="取出某个版本的某文件"><a href="#取出某个版本的某文件" class="headerlink" title="取出某个版本的某文件:"></a>取出某个版本的某文件:</h3><p>git checkout branch – filename<br>维持HEAD的指向不变。用branch所指向的提交中filename替换暂存区和工作区中相应的文件。注意会将暂存区和工作区中的filename文件直接覆盖。</p>
-<h3 id="设置commit的编辑器"><a href="#设置commit的编辑器" class="headerlink" title="设置commit的编辑器:"></a>设置commit的编辑器:</h3><p>git config core.editor vi</p>
-<h3 id="checkout-reset-revert"><a href="#checkout-reset-revert" class="headerlink" title="checkout, reset, revert"></a>checkout, reset, revert</h3><p><a href="http://segmentfault.com/a/1190000003102737" target="_blank" rel="noopener">http://segmentfault.com/a/1190000003102737</a></p>
-<h3 id="pull"><a href="#pull" class="headerlink" title="pull"></a>pull</h3><p><a href="http://www.cnblogs.com/hanxianlong/archive/2012/09/10/2678659.html" target="_blank" rel="noopener">http://www.cnblogs.com/hanxianlong/archive/2012/09/10/2678659.html</a></p>
-<h3 id="push"><a href="#push" class="headerlink" title="push"></a>push</h3><p><a href="http://www.open-open.com/lib/view/open1431680242669.html" target="_blank" rel="noopener">http://www.open-open.com/lib/view/open1431680242669.html</a></p>
-<h3 id="show"><a href="#show" class="headerlink" title="show"></a>show</h3><p>样例：git show 12e1231ad123  ./jni/aa.cpp<br>上面这条命令可以查看12e1231ad123这次commit中的./jni/aa.cpp的变化</p>
-<h3 id="Git忽略文件"><a href="#Git忽略文件" class="headerlink" title="Git忽略文件"></a>Git忽略文件</h3><h4 id="从未提交过的文件"><a href="#从未提交过的文件" class="headerlink" title="从未提交过的文件"></a>从未提交过的文件</h4><p>使用.gitignore。<br>该文件只能作用于未跟踪的文件（Untracked Files），也就是那些从来没有被 git 记录过的文件。</p>
-<h4 id="删除已经推送（push）过的文件"><a href="#删除已经推送（push）过的文件" class="headerlink" title="删除已经推送（push）过的文件"></a>删除已经推送（push）过的文件</h4><p>想从git远程库中删除，并在以后的提交中忽略，但是却还想在本地保留这个文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached Xml/config.xml</span><br></pre></td></tr></table></figure>
-
-<h4 id="忽略已经推送（push）过的文件"><a href="#忽略已经推送（push）过的文件" class="headerlink" title="忽略已经推送（push）过的文件"></a>忽略已经推送（push）过的文件</h4><p>已经推送（push）过的文件，想在以后的提交时忽略此文件，即使本地已经修改过，而且不删除git远程库中相应文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged Xml/config.xml</span><br></pre></td></tr></table></figure>
-<p>后面的 Xml/config.xml 是要忽略的文件的路径。如果要忽略一个目录，打开 git bash，cd到 目标目录下，执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git update-index --assume-unchanged $(git ls-files | tr <span class="string">'\n'</span> <span class="string">' '</span>)</span><br></pre></td></tr></table></figure>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
-            <a href="/2018/01/24/2018-01-24-Github-Page-Setup/">Github Page Setup</a>
-        </h1>
-        
-        <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
-    
-    <i class="icon-calendar"></i>
-    
-    <time datetime="2018-01-23T16:00:00.000Z" itemprop="datePublished">2018-01-24</time>
-</a>
-
-            
-<div class="article-tag-list">
-    <i class="icon-tag"></i>
-    <a class="article-tag-link" href="/tags/jekyll/" rel="tag">jekyll</a>
-</div>
-
-
-        </div>
-    </header>
-    
-    <section class="article-body markdown-body">
-        
-        <p>github page使用的引擎jekyll，jekyll是静态网页生成器。<br>jekyll包含一些用markdown语法写的文件的文件夹；通过markdown和Liquid转换器生成一个网站。</p>
-<h3 id="安装jekyll"><a href="#安装jekyll" class="headerlink" title="安装jekyll"></a>安装jekyll</h3><pre><code>gem install bundler  
-gem install jekyll</code></pre><h3 id="本地启动jekyll"><a href="#本地启动jekyll" class="headerlink" title="本地启动jekyll"></a>本地启动jekyll</h3><p>打开git bash<br>进入jekyll项目的主目录</p>
-<pre><code>bundle install
-jekyll serve --port 5000</code></pre><h3 id="jekyll使用的liquid的规则介绍"><a href="#jekyll使用的liquid的规则介绍" class="headerlink" title="jekyll使用的liquid的规则介绍"></a>jekyll使用的liquid的规则介绍</h3><p>在标准的liquid语法上进行了少量拓展<br><a href="http://jekyllrb.com/docs/templates/" target="_blank" rel="noopener">http://jekyllrb.com/docs/templates/</a>  </p>
-<h3 id="liquid语法基础"><a href="#liquid语法基础" class="headerlink" title="liquid语法基础"></a>liquid语法基础</h3><p><a href="http://www.jianshu.com/p/b11bc7b3306c" target="_blank" rel="noopener">http://www.jianshu.com/p/b11bc7b3306c</a></p>
-
-        
-    </section>
-</article>
-
-
-    <article class="article" itemscope itemprop="blogPost">
-    
-    <header class="article-header">
-        
-        <h1 itemprop="name">
             <a href="/2017/09/23/2017-09-23-Javascript-Remote-Interaction/">Javascript与远端的交互</a>
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
+            <a class="article-date" href="http://yoursite.com/categories/javascript/index.html">
     
     <i class="icon-calendar"></i>
     
@@ -542,7 +205,7 @@ jekyll serve --port 5000</code></pre><h3 id="jekyll使用的liquid的规则介�
         </h1>
         
         <div class="article-meta clearfix">
-            <a class="article-date" href="http://yoursite.com/index.html">
+            <a class="article-date" href="http://yoursite.com/categories/javascript/index.html">
     
     <i class="icon-calendar"></i>
     
@@ -606,10 +269,6 @@ jekyll serve --port 5000</code></pre><h3 id="jekyll使用的liquid的规则介�
 
 
 
-
-<nav class="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-</nav>
 
 
 
